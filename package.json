@@ -4,8 +4,8 @@
   "description": "[![Actions Status](https://github.com/GitClimb/fullstack-javascript-project-46/workflows/hexlet-check/badge.svg)](https://github.com/GitClimb/fullstack-javascript-project-46/actions)",
   "main": "index.js",
   "type": "module",
-  "bin" : {
-	  "gendiff": "bin/gendiff.js"
+  "bin": {
+    "gendiff": "bin/gendiff.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/GitClimb/fullstack-javascript-project-46#readme",
   "dependencies": {
     "commander": "^9.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0"
   }
 }
