@@ -24,7 +24,7 @@ const compare = (coll1, coll2) => {
     return acc;
   }, []);
 
-  return `{\n${diff.join(' \n')}\n}`;
+  return diff;
 };
 
 export default compare;
