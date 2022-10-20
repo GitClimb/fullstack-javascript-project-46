@@ -27,4 +27,9 @@ const compare = (coll1, coll2) => {
   return diff;
 };
 
-export default compare;
+const genDiff = (file1, file2) => {
+  const compareFiles = compare(file1, file2);
+  return `{\n${compareFiles.join(' \n')}\n}`;
+};
+
+export default genDiff;
