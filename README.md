@@ -3,4 +3,6 @@
 
 <a href="https://codeclimate.com/github/GitClimb/fullstack-javascript-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/4e01b2559dc1c7b2d502/maintainability" /></a>
 
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/GitClimb/fullstack-javascript-project-46/workflows/main.yml/badge.svg)](https://github.com/GitClimb/fullstack-javascript-project-46/actions)
+
+
