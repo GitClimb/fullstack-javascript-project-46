@@ -1,0 +1,10 @@
+name: test and lint
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: npx jest
+      - name: lint
+        run: make lint
