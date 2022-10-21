@@ -4,8 +4,9 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+      - name: install package
+        run: make install
       - name: test
-        run: npm install
         run: npx jest
       - name: lint
         run: make lint
