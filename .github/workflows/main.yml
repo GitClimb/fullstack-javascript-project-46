@@ -12,13 +12,9 @@ jobs:
       - run: make lint
       - name: test
         run: npx jest
-
-    steps:
-      - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.2.0
+      - uses: paambaati/codeclimate-action@v3.2.0
       env:
         CC_TEST_REPORTER_ID:  ${{ secrets.MAIN_SECRET }}
-      with:
+      - with:
         coverageCommand: npm run coverage
         debug: true
-     
