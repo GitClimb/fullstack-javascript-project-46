@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1666271840857" clover="3.2.0">
-  <project timestamp="1666271840857" name="All files">
-    <metrics statements="24" coveredstatements="22" conditionals="16" coveredconditionals="14" methods="4" coveredmethods="4" elements="44" coveredelements="40" complexity="0" loc="24" ncloc="24" packages="1" files="1" classes="1"/>
+<coverage generated="1666433359813" clover="3.2.0">
+  <project timestamp="1666433359813" name="All files">
+    <metrics statements="31" coveredstatements="28" conditionals="18" coveredconditionals="15" methods="5" coveredmethods="5" elements="54" coveredelements="48" complexity="0" loc="31" ncloc="31" packages="1" files="2" classes="2"/>
     <file name="index.js" path="/home/gragos/Hexlet_Project/Different-Calculator/src/index.js">
       <metrics statements="24" coveredstatements="22" conditionals="16" coveredconditionals="14" methods="4" coveredmethods="4"/>
       <line num="3" count="1" type="stmt"/>
@@ -28,6 +28,16 @@
       <line num="30" count="1" type="stmt"/>
       <line num="31" count="1" type="stmt"/>
       <line num="32" count="1" type="stmt"/>
+    </file>
+    <file name="parsers.js" path="/home/gragos/Hexlet_Project/Different-Calculator/src/parsers.js">
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="8" count="2" type="stmt"/>
+      <line num="10" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>
