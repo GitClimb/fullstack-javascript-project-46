@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 import { program } from 'commander';
-import genDiff from '../src/index.js';
+import { genDiff } from '../src/index.js';
 import parseFile from '../src/parsers.js';
 
 program
@@ -9,7 +9,7 @@ program
   .description('Compares two configuration files and shows a difference.')
   .argument('<filepath1>')
   .argument('<filepath2>')
-  .option('-f, --format <type>', 'output format')
+  .option('-f, --format [type]', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
     const file1 = parseFile(filepath1);
     const file2 = parseFile(filepath2);

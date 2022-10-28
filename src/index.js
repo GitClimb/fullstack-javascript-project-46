@@ -36,7 +36,7 @@ const compare = (coll1, coll2) => {
   return diff;
 };
 
-const stringify = (value, replacer = ' ', spacesCount = 1) => {
+const stylish = (value, replacer = ' ', spacesCount = 1) => {
   const iter = (currentValue, detph) => {
     if (!Object.is(typeof currentValue, typeof []) || currentValue === null) {
       return `${currentValue}`;
@@ -61,8 +61,11 @@ const stringify = (value, replacer = ' ', spacesCount = 1) => {
 
 const genDiff = (file1, file2) => {
   const compareFiles = compare(file1, file2);
-  const stringy = stringify(compareFiles, '  ', 2);
+  const stringy = stylish(compareFiles, '  ', 2);
   return stringy;
 };
 
-export default genDiff;
+export {
+  genDiff,
+  stylish,
+};
