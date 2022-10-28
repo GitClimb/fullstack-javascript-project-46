@@ -2,7 +2,7 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { test, expect } from '@jest/globals';
-import genDiff from '../src/index.js';
+import { genDiff } from '../src/index.js';
 import parseFile from '../src/parsers.js';
 
 test('gendiff', () => {
