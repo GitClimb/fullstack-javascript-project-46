@@ -10,19 +10,12 @@ const compare = (coll1, coll2) => {
   const diff = uniqueKeys.reduce((acc, key) => {
     if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
       acc[`${key}`] = compare(coll1[key], coll2[key]);
-    }
-    if (!keysColl2.includes(key)) {
+    } else if (!keysColl2.includes(key)) {
       acc[`- ${key}`] = coll1[key];
-    }
-    if (!keysColl1.includes(key)) {
+    } else if (!keysColl1.includes(key)) {
       acc[`+ ${key}`] = coll2[key];
-    }
-    if (keysColl1.includes(key) && keysColl2.includes(key)) {
-      if (coll1[key] > coll2[key]) {
-        acc[`- ${key}`] = coll1[key];
-        acc[`+ ${key}`] = coll2[key];
-      }
-      if (coll1[key] < coll2[key]) {
+    } else if (keysColl1.includes(key) && keysColl2.includes(key)) {
+      if (coll1[key] !== coll2[key]) {
         acc[`- ${key}`] = coll1[key];
         acc[`+ ${key}`] = coll2[key];
       }
