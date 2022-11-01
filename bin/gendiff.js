@@ -13,7 +13,8 @@ program
   .action((filepath1, filepath2) => {
     const file1 = parseFile(filepath1);
     const file2 = parseFile(filepath2);
-    console.log(genDiff(file1, file2, program.opts().format));
+    const diff = genDiff(file1, file2, program.opts().format);
+    console.log(diff);
   });
 
 program.parse();
