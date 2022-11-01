@@ -11,7 +11,7 @@ test('gendiff', () => {
   const __dirname = dirname(__filename);
 
   const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-  const readFile = (filename) => parseFile(getFixturePath(filename));
+  const readFile = (filename) => getFixturePath(filename);
 
   expect(genDiff(readFile('testFile1.json'), readFile('testFile2.json'))).toEqual(`{
     common: {
@@ -64,7 +64,7 @@ test('plain', () => {
   const __dirname = dirname(__filename);
 
   const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-  const readFile = (filename) => parseFile(getFixturePath(filename));
+  const readFile = (filename) => getFixturePath(filename);
 
   expect(genDiff(readFile('testFile1.json'), readFile('testFile2.json'), 'plain')).toEqual(`
  Property 'common.follow' was added with value: false
@@ -85,7 +85,7 @@ test('json', () => {
   const __dirname = dirname(__filename);
 
   const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-  const readFile = (filename) => parseFile(getFixturePath(filename));
+  const readFile = (filename) => getFixturePath(filename);
 
-  expect(genDiff(readFile('testFile1.json'), readFile('testFile2.json'), 'json')).toEqual(JSON.stringify(compare(readFile('testFile1.json'), readFile('testFile2.json'))));
+  expect(genDiff(readFile('testFile1.json'), readFile('testFile2.json'), 'json')).toEqual(JSON.stringify(compare(parseFile(readFile('testFile1.json')), parseFile(readFile('testFile2.json')))));
 });
