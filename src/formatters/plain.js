@@ -18,11 +18,11 @@ const plain = (values, path = '') => {
 
   for (let i = 0; i < keys.length; i += 1) {
     const part = keys[i];
-    let fil = path;
+    let fill = path;
 
     if (!part.startsWith('-') && !part.startsWith('+') && _.isObject(values[part])) {
-      fil = `${fil}${part}.`;
-      result = `${result}${plain(values[part], fil)}`;
+      fill = `${fill}${part}.`;
+      result = `${result}${plain(values[part], fill)}`;
     } else if (keys[i + 1] !== undefined && part.slice(2) === keys[i + 1].slice(2)) {
       result = `${result}\n Property '${path}${part.slice(2)}' was updated. From ${type(isSost(values[part]))} to ${type(values[keys[i + 1]])}`;
       i += 1;
