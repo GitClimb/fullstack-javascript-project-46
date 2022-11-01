@@ -2,7 +2,7 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { test, expect } from '@jest/globals';
-import { genDiff } from '../src/index.js';
+import genDiff from '../src/index.js';
 import parseFile from '../src/parsers.js';
 
 test('gendiff', () => {
@@ -56,4 +56,25 @@ test('gendiff', () => {
         fee: 100500
     }
 }`);
+});
+
+test('plain', () => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+
+  const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+  const readFile = (filename) => parseFile(getFixturePath(filename));
+
+  expect(genDiff(readFile('testFile1.json'), readFile('testFile2.json'), 'plain')).toEqual(`
+ Property 'common.follow' was added with value: false
+ Property 'common.setting2' was removed
+ Property 'common.setting3' was updated. From true to null
+ Property 'common.setting4' was added with value: 'blah blah'
+ Property 'common.setting5' was added with value: [complex value]
+ Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+ Property 'common.setting6.ops' was added with value: 'vops'
+ Property 'group1.baz' was updated. From 'bas' to 'bars'
+ Property 'group1.nest' was updated. From [complex value] to 'str'
+ Property 'group2' was removed
+ Property 'group3' was added with value: [complex value]`);
 });

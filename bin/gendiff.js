@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 import { program } from 'commander';
-import { genDiff } from '../src/index.js';
+import genDiff from '../src/index.js';
 import parseFile from '../src/parsers.js';
 
 program
@@ -13,7 +13,7 @@ program
   .action((filepath1, filepath2) => {
     const file1 = parseFile(filepath1);
     const file2 = parseFile(filepath2);
-    console.log(genDiff(file1, file2));
+    console.log(genDiff(file1, file2, program.opts().format));
   });
 
 program.parse();

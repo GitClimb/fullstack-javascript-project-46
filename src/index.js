@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import selectFormat from './formatters/index.js';
 
 const compare = (coll1, coll2) => {
   const keysColl1 = _.keys(coll1);
@@ -36,36 +37,10 @@ const compare = (coll1, coll2) => {
   return diff;
 };
 
-const stylish = (value, replacer = ' ', spacesCount = 1) => {
-  const iter = (currentValue, detph) => {
-    if (!Object.is(typeof currentValue, typeof []) || currentValue === null) {
-      return `${currentValue}`;
-    }
-
-    const indentSize = detph * spacesCount;
-    const frontIndent = replacer.repeat(indentSize - 1);
-    const rearIndent = replacer.repeat(indentSize - spacesCount);
-    const lines = Object
-      .entries(currentValue)
-      .map(([key, val]) => {
-        if (key.startsWith('+ ') || key.startsWith('- ')) {
-          return `${frontIndent}${key}: ${iter(val, detph + 1)}`;
-        }
-        return `${frontIndent}  ${key}: ${iter(val, detph + 1)}`;
-      });
-    return ['{', ...lines, `${rearIndent}}`].join('\n');
-  };
-
-  return iter(value, 1);
-};
-
-const genDiff = (file1, file2) => {
+const genDiff = (file1, file2, formatName) => {
   const compareFiles = compare(file1, file2);
-  const stringy = stylish(compareFiles, '  ', 2);
+  const stringy = selectFormat(compareFiles, formatName);
   return stringy;
 };
 
-export {
-  genDiff,
-  stylish,
-};
+export default genDiff;
