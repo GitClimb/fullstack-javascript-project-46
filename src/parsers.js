@@ -7,7 +7,7 @@ const parseFile = (filepath) => {
   const format = path.extname(configPath);
   const data = fs.readFileSync(configPath);
 
-  if (format === '.yaml') {
+  if (format === '.yaml' || format === '.yml') {
     return yaml.load(data);
   }
   return JSON.parse(data);
