@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import selectFormat from './formatters/index.js';
 
-const compare = (coll1, coll2) => {
+export const compare = (coll1, coll2) => {
   const keysColl1 = _.keys(coll1);
   const keysColl2 = _.keys(coll2);
   const ollKeys = _.sortBy(keysColl1.concat(keysColl2));
@@ -37,10 +37,8 @@ const compare = (coll1, coll2) => {
   return diff;
 };
 
-const genDiff = (file1, file2, formatName) => {
+export const genDiff = (file1, file2, formatName) => {
   const compareFiles = compare(file1, file2);
   const stringy = selectFormat(compareFiles, formatName);
   return stringy;
 };
-
-export default genDiff;
