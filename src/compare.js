@@ -11,15 +11,28 @@ const compare = (coll1, coll2) => {
       const keys = [`${key}`];
       const value = compare(coll1[key], coll2[key]);
       return { ...acc, [keys]: value };
-    } if (!keysColl2.includes(key)) {
-      acc[`- ${key}`] = coll1[key];
-    } else if (!keysColl1.includes(key)) {
-      acc[`+ ${key}`] = coll2[key];
-    } else if (coll1[key] !== coll2[key]) {
-      acc[`- ${key}`] = coll1[key];
-      acc[`+ ${key}`] = coll2[key];
-    } else {
-      acc[`${key}`] = coll1[key];
+    }
+    if (!keysColl2.includes(key)) {
+      const keys = [`- ${key}`];
+      const value = coll1[key];
+      return { ...acc, [keys]: value };
+    }
+    if (!keysColl1.includes(key)) {
+      const keys = [`+ ${key}`];
+      const value = coll2[key];
+      return { ...acc, [keys]: value };
+    }
+    if (coll1[key] !== coll2[key]) {
+      const keys1 = [`- ${key}`];
+      const keys2 = [`+ ${key}`];
+      const value1 = coll1[key];
+      const value2 = coll2[key];
+      return { ...acc, [keys1]: value1, [keys2]: value2 };
+    }
+    if (coll1[key] === coll2[key]) {
+      const keys = [`${key}`];
+      const value = coll1[key];
+      return { ...acc, [keys]: value };
     }
 
     return acc;
