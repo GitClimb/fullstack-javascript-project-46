@@ -13,14 +13,11 @@ const compare = (coll1, coll2) => {
       acc[`- ${key}`] = coll1[key];
     } else if (!keysColl1.includes(key)) {
       acc[`+ ${key}`] = coll2[key];
+    } else if (coll1[key] !== coll2[key]) {
+      acc[`- ${key}`] = coll1[key];
+      acc[`+ ${key}`] = coll2[key];
     } else {
-      if (coll1[key] !== coll2[key]) {
-        acc[`- ${key}`] = coll1[key];
-        acc[`+ ${key}`] = coll2[key];
-      }
-      if (coll1[key] === coll2[key]) {
-        acc[`${key}`] = coll1[key];
-      }
+      acc[`${key}`] = coll1[key];
     }
     return acc;
   }, {});
