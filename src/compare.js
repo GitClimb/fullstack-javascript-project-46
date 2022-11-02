@@ -7,20 +7,19 @@ const compare = (coll1, coll2) => {
   const uniqueKeys = ollKeys.filter((el, id) => ollKeys.indexOf(el) === id);
 
   return uniqueKeys.reduce((acc, key) => {
-    const all = acc;
     if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
-      all[`${key}`] = compare(coll1[key], coll2[key]);
+      acc[`${key}`] = compare(coll1[key], coll2[key]);
     } else if (!keysColl2.includes(key)) {
-      all[`- ${key}`] = coll1[key];
+      acc[`- ${key}`] = coll1[key];
     } else if (!keysColl1.includes(key)) {
-      all[`+ ${key}`] = coll2[key];
+      acc[`+ ${key}`] = coll2[key];
     } else if (coll1[key] !== coll2[key]) {
-      all[`- ${key}`] = coll1[key];
-      all[`+ ${key}`] = coll2[key];
+      acc[`- ${key}`] = coll1[key];
+      acc[`+ ${key}`] = coll2[key];
     } else {
-      all[`${key}`] = coll1[key];
+      acc[`${key}`] = coll1[key];
     }
-    return all;
+    return acc;
   }, {});
 };
 
