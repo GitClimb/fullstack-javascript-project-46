@@ -6,26 +6,23 @@ const compare = (coll1, coll2) => {
   const ollKeys = _.sortBy(keysColl1.concat(keysColl2));
   const uniqueKeys = ollKeys.filter((el, id) => ollKeys.indexOf(el) === id);
 
-  const diff = (coll) => {
-    const acc = {};
-
-    for (const key of coll) {
-      if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
-        acc[`${key}`] = compare(coll1[key], coll2[key]);
-      } else if (!keysColl2.includes(key)) {
-        acc[`- ${key}`] = coll1[key];
-      } else if (!keysColl1.includes(key)) {
-        acc[`+ ${key}`] = coll2[key];
-      } else if (coll1[key] !== coll2[key]) {
-        acc[`- ${key}`] = coll1[key];
-        acc[`+ ${key}`] = coll2[key];
-      } else {
-        acc[`${key}`] = coll1[key];
-      }
+  const diff = uniqueKeys.reduce((acc, key) => {
+    if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
+      acc[`${key}`] = compare(coll1[key], coll2[key]);
+    } else if (!keysColl2.includes(key)) {
+      acc[`- ${key}`] = coll1[key];
+    } else if (!keysColl1.includes(key)) {
+      acc[`+ ${key}`] = coll2[key];
+    } else if (coll1[key] !== coll2[key]) {
+      acc[`- ${key}`] = coll1[key];
+      acc[`+ ${key}`] = coll2[key];
+    } else {
+      acc[`${key}`] = coll1[key];
     }
     return acc;
-  };
-  return diff(uniqueKeys);
+  }, {});
+
+  return diff;
 };
 
 export default compare;
