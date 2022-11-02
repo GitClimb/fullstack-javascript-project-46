@@ -8,6 +8,7 @@ const compare = (coll1, coll2) => {
 
   const diff = (coll) => {
     const arr = coll.reduce((acc, key) => {
+      const result = { ...acc };
       if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
         acc[`${key}`] = compare(coll1[key], coll2[key]);
       } else if (!keysColl2.includes(key)) {
@@ -23,7 +24,7 @@ const compare = (coll1, coll2) => {
           acc[`${key}`] = coll1[key];
         }
       }
-      return acc;
+      return result;
     }, {});
     return arr;
   };
