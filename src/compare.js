@@ -8,8 +8,10 @@ const compare = (coll1, coll2) => {
 
   const diff = uniqueKeys.reduce((acc, key) => {
     if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
-      acc[`${key}`] = compare(coll1[key], coll2[key]);
-    } else if (!keysColl2.includes(key)) {
+      const keys = [`${key}`];
+      const value = compare(coll1[key], coll2[key]);
+      return { ...acc, [keys]: value };
+    } if (!keysColl2.includes(key)) {
       acc[`- ${key}`] = coll1[key];
     } else if (!keysColl1.includes(key)) {
       acc[`+ ${key}`] = coll2[key];
@@ -19,6 +21,7 @@ const compare = (coll1, coll2) => {
     } else {
       acc[`${key}`] = coll1[key];
     }
+
     return acc;
   }, {});
 
