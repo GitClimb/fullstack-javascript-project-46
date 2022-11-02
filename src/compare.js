@@ -4,8 +4,7 @@ const compare = (coll1, coll2) => {
   const keysColl1 = _.keys(coll1);
   const keysColl2 = _.keys(coll2);
   const ollKeys = _.sortBy(keysColl1.concat(keysColl2));
-  const uniqueKeys = [];
-  ollKeys.filter((part) => (!uniqueKeys.includes(part) ? uniqueKeys.push(part) : part));
+  const uniqueKeys = ollKeys.filter((el, id) => ollKeys.indexOf(el) === id);
 
   const diff = uniqueKeys.reduce((acc, key) => {
     if (_.isObject(coll1[key]) && _.isObject(coll2[key])) {
