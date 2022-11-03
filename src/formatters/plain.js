@@ -13,28 +13,34 @@ const type = (part) => {
   return part;
 };
 
-const plain = (values, path = '') => {
+const plain = (values, path) => {
   const keys = Object.keys(values);
-  const result = [];
 
-  for (let i = 0; i < keys.length; i += 1) {
-    const part = keys[i];
-    let fill = path;
-
-    if (!part.startsWith('-') && !part.startsWith('+') && _.isObject(values[part])) {
-      fill = `${fill}${part}.`;
-      result.push(`${plain(values[part], fill)}`);
-    } else if (keys[i + 1] !== undefined && part.slice(2) === keys[i + 1].slice(2)) {
-      const partt = `Property '${path}${part.slice(2)}' was updated. From ${type(isSost(values[part]))} to ${type(isSost(values[keys[i + 1]]))}`;
-      i += 1;
-      result.push(partt);
-    } else if (part.startsWith('+ ')) {
-      result.push(`Property '${path}${part.slice(2)}' was added with value: ${type(isSost(values[part]))}`);
-    } else if (part.startsWith('- ')) {
-      result.push(`Property '${path}${part.slice(2)}' was removed`);
+  const iter = (keyss) => keyss.reduce((acc, key) => {
+    const part = keys.filter((keyy) => keyy.slice(2) === key.slice(2));
+    if (part.length > 1) {
+      const massage = `Property '${path}${key.slice(2)}' was updated. From ${type(isSost(values[part[0]]))} to ${type(isSost(values[part[1]]))}`;
+      return [...acc, massage];
     }
-  }
-  return result.join('\n');
+    if (!key.startsWith('-') && !key.startsWith('+') && _.isObject(values[key])) {
+      const fullPath = `${path}${key}.`;
+      const massage = plain(values[key], fullPath);
+      return [...acc, massage];
+    }
+
+    if (key.startsWith('+ ')) {
+      const massage = `Property '${path}${key.slice(2)}' was added with value: ${type(isSost(values[key]))}`;
+      return [...acc, massage];
+    }
+    if (key.startsWith('- ')) {
+      const massage = `Property '${path}${key.slice(2)}' was removed`;
+      return [...acc, massage];
+    }
+    return acc;
+  }, []);
+  const getUp = iter(keys).flat(Infinity);
+  const Up = getUp.filter((el, id) => getUp.indexOf(el) === id);
+  return Up.join('\n');
 };
 
 export default plain;

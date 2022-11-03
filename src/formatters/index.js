@@ -3,7 +3,7 @@ import stylish from './stylish.js';
 
 const selectFormat = (diff, formatName) => {
   if (formatName === 'plain') {
-    return plain(diff);
+    return plain(diff, '');
   }
   if (formatName === 'json') {
     return JSON.stringify(diff);
